@@ -1,5 +1,7 @@
 # AceBook Team Eccelsia
 
+## Jira Board
+https://makers-team-meridian.atlassian.net/jira/software/projects/AB/boards/1
 
 ## Quickstart
 
@@ -14,7 +16,7 @@ First, clone this repository. Then:
 > bin/rails server # Start the server at localhost:3000
 ```
 
-# git workflow
+## git workflow
 ```git checkout main```
 ```git pull```
 ```git checkout -b "MBNB-[ticket_num]-brief-title"```
