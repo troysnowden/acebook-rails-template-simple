@@ -1,0 +1,16 @@
+// Place all the styles related to the landing controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+.navbar {
+  background-color: wheat;
+  width: 100%;
+  position: sticky;
+  height: 30px;
+}
+
+.users {
+  margin: auto;
+  width: 50%;
+  border: 3px solid wheat;
+  padding: 10px;
+}
