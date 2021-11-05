@@ -3,4 +3,5 @@ class Likes < ActiveRecord::Migration[6.1]
     create_table :likes do |t|
     end
   end
+  
 end
