@@ -1,14 +1,19 @@
-<% @posts.each do |post| %>
-  <p><%= post.message %></p>
-<% end %>
 
 <%= link_to new_post_path do %>
   Enter new post here
 <% end %>
-  <div class="jumbotron-container">
-    <div class="jumbotron rounded">
-      <h1>Hello, world!</h1>
-      <p>...</p>
-      <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+<% @posts.each do |post| %>
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <div class="card-title-container">
+        <h5 class="card-title">POST BY [USER.NAME]</h5>
+        <h6 class="card-subtitle mb-2 text-muted">On 01/02/03</h6>
+      </div>
+      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+      <p class="card-text">3 Likes</p>
+      <a href="#" class="card-link">Like</a>
+      <a href="#" class="card-link">Comment</a>
     </div>
   </div>
+<% end %>
+
