@@ -10,7 +10,13 @@
     <style type="text/css">
       .card { margin-bottom: 20px; }
       .card-body { background: #e7e7e7 !important; } 
-      .card-title-container { padding-left: 5px;  border-radius: 5px; background: #d7d7d7 !important; } 
+      .card-title-container { position: relative; padding-left: 5px;  border-radius: 5px; background: #d7d7d7 !important; } 
+      .profile-pic {
+          position: absolute;
+          top: 0px;
+          right: 0px;
+          height:100%;
+      }
     </style>
     <title>Acebook</title>
     <%= csrf_meta_tags %>
