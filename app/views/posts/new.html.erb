@@ -1,6 +1,21 @@
-<%= form_for @post do |form| %>
-  <%= form.label :message %>
-  <%= form.text_field :message %>
 
-  <%= form.submit "Submit" %>
-<% end %>
+<div class="card">
+  <div class="card-header">
+    <h2>
+      Create post
+    </h2>
+  </div>
+  <div class="card-body">
+    
+    <p class="card-text">
+          <h1>
+            <%= form_for @post do |form| %>
+              <%= form.label :message %>
+              <%= form.text_field :message %>
+      
+              <%= form.submit "Submit" %>
+            <% end %>
+          </h1>
+    </p>
+  </div>
+</div>
