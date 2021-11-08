@@ -23,7 +23,7 @@ class PostsController < ApplicationController
         :user_id => post.user_id,
         :author_name => post_user.full_name,
         :author_profile_photo => author_profile_photo,
-        # :post_image => post.image_upload? ? "eggheads/egghead#{Random.rand(3) + 1}.png" : url_for(post.image_upload),
+        :post_image => post.image_upload.attached? ? url_for(post.image_upload) : "eggheads/egghead#{Random.rand(3) + 1}.png",
         :formatted_time => post.created_at.strftime("on %d/%m/%Y at %k:%M")
       }
     end
