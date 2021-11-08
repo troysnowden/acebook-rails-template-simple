@@ -12,15 +12,17 @@ class PostsController < ApplicationController
   def index
     @posts_with_username = []
     
-    Post.all.each do |post|
+    Post.all.each do |post| 
       @posts_with_username << {
         :id => post.id,
         :message => post.message,
         :created_at => post.created_at,
         :user_id => post.user_id,
-        :author_name => User.find_by(id: post.user_id).full_name
+        :author_name => User.find_by(id: post.user_id).full_name,
+        :formatted_time => post.created_at.strftime("on %d/%m/%Y at %k:%M")
       }
     end
+    p @posts_with_username
   end
 
   private
