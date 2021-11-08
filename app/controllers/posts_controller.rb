@@ -13,12 +13,17 @@ class PostsController < ApplicationController
     @posts_with_username = []
     
     Post.all.each do |post| 
+      post_user = User.find_by(id: post.user_id)
+      author_profile_photo = post_user.profile_photo.attached? ? 
+       url_for(post_user.profile_photo) : "eggheads/egghead#{Random.rand(3) + 1}.png"
       @posts_with_username << {
         :id => post.id,
         :message => post.message,
         :created_at => post.created_at,
         :user_id => post.user_id,
-        :author_name => User.find_by(id: post.user_id).full_name,
+        :author_name => post_user.full_name,
+        :author_profile_photo => author_profile_photo,
+        # :post_image => post.image_upload? ? "eggheads/egghead#{Random.rand(3) + 1}.png" : url_for(post.image_upload),
         :formatted_time => post.created_at.strftime("on %d/%m/%Y at %k:%M")
       }
     end
@@ -28,6 +33,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:message, :user_id)
+    params.require(:post).permit(:message, :user_id, :image_upload)
   end
 end

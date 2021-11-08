@@ -5,7 +5,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    session[:user_id] = User.create(params.require(:user).permit(:username, :full_name, :password)).id
+    session[:user_id] = User.create(params.require(:user).permit(:username, :full_name, :password, :profile_photo)).id
     redirect_to "/"
   end
 

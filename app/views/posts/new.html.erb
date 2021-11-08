@@ -11,9 +11,11 @@
           <h1>
             <%= form_for @post do |form| %>
               <%= form.label :message %>
-              <%= form.text_field :message %>
+              <%= form.text_field :message %><br>
+              <%# <br>
+              <%= form.label :image_upload%>
+              <%# <%= form.file_field :image_upload%>
               <%= form.hidden_field(:user_id, :value => @user_id) %>
-
       
               <%= form.submit "Submit" %>
             <% end %>

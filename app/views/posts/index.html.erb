@@ -8,9 +8,10 @@
       <div class="card-title-container">
         <h5 class="card-title">Post by <%= post[:author_name] %></h5>
         <h6 class="card-subtitle mb-2 text-muted"><%= post[:formatted_time]%></h6>
-        <%= image_tag("eggheads/egghead#{Random.rand(3) + 1}.png", :class => "profile-pic")%>
+        <%= image_tag(post[:author_profile_photo], :class => "profile-pic")%>
       </div>
       <p class="card-text"><%= post[:message] %></p>
+      <%# <p class="card-text"><<%= image_tag(post[:post_image], :class => "profile-pic")%>
       <p class="card-text">3 Likes</p>
       <a href="#" class="card-link">Like</a>
       <a href="#" class="card-link">Comment</a>
