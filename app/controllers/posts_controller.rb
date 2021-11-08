@@ -19,10 +19,15 @@ class PostsController < ApplicationController
         :created_at => post.created_at,
         :user_id => post.user_id,
         :author_name => User.find_by(id: post.user_id).full_name,
-        :formatted_time => post.created_at.strftime("on %d/%m/%Y at %k:%M")
+        :formatted_time => post.created_at.strftime("on %d/%m/%Y at %k:%M"),
+        :comments => [
+            {:message => "great post!", :user_id => 2, :created_at => "03/11/2021 at 07:48"},
+            {:message => "jinkies!", :user_id => 2, :created_at => "08/11/2021 at 11:48"}
+          ]
       }
     end
     @posts_with_username = @posts_with_username.reverse()
+    p @posts_with_username
   end
 
   private
