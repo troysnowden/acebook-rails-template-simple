@@ -10,7 +10,19 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts_with_username = []
+    
+    Post.all.each do |post| 
+      @posts_with_username << {
+        :id => post.id,
+        :message => post.message,
+        :created_at => post.created_at,
+        :user_id => post.user_id,
+        :author_name => User.find_by(id: post.user_id).full_name,
+        :formatted_time => post.created_at.strftime("on %d/%m/%Y at %k:%M")
+      }
+    end
+    @posts_with_username = @posts_with_username.reverse()
   end
 
   private
