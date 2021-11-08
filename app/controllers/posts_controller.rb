@@ -27,7 +27,7 @@ class PostsController < ApplicationController
         :formatted_time => post.created_at.strftime("on %d/%m/%Y at %k:%M")
       }
     end
-    p @posts_with_username
+    @posts_with_username = @posts_with_username.reverse()
   end
 
   private
