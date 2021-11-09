@@ -28,8 +28,6 @@ class PostsController < ApplicationController
         }
       end
 
-      p post_comments
-
       @posts_with_username << {
         :id => post.id,
         :message => post.message,
