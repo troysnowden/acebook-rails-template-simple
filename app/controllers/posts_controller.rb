@@ -11,10 +11,15 @@ class PostsController < ApplicationController
 
   def index
     @posts_with_username = []
+    @comment = Comment.new
+    @user_id = session[:user_id]
     
     Post.all.each do |post| 
-      post_user = User.find_by(id: post.user_id)
-      @posts_with_username << post_hash(post, post_user)
+      post_comments = []
+      Comment.where(post_id: post[:id]).each do |comment| 
+        post_comments << comment_hash(comment)
+      end
+      @posts_with_username << post_hash(post, User.find_by(id: post.user_id), post_comments)
     end
     @posts_with_username.reverse!
   end
@@ -35,7 +40,7 @@ class PostsController < ApplicationController
       url_for(post.image_upload) : "eggheads/egghead#{Random.rand(3) + 1}.png"
   end
 
-  def post_hash(post, user)
+  def post_hash(post, user, comments)
     {
       :id => post.id,
       :message => post.message,
@@ -44,7 +49,20 @@ class PostsController < ApplicationController
       :author_name => user.full_name,
       :author_profile_photo => get_author_profile_photo(user),
       :post_image => get_post_image(post),
-      :formatted_time => post.created_at.strftime("on %d/%m/%Y at %k:%M")
+      :formatted_time => post.created_at.strftime("on %d/%m/%Y at %k:%M"),
+      :comments => comments
+    }
+  end
+
+  def comment_hash(comment)
+    {
+      :id => comment.id,
+      :message => comment.comment,
+      :created_at => comment.created_at,
+      :user_id => comment.user_id,
+      :post_id => comment.post_id,
+      :author_name => User.find_by(id: comment.user_id).full_name,
+      :formatted_time => comment.created_at.strftime("on %d/%m/%Y at %k:%M"),
     }
   end
 end
