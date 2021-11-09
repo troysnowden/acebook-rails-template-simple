@@ -37,7 +37,7 @@ class PostsController < ApplicationController
 
   def get_post_image(post)
     post.image_upload.attached? ? 
-      url_for(post.image_upload) : "eggheads/egghead#{Random.rand(3) + 1}.png"
+      url_for(post.image_upload) : nil
   end
 
   def post_hash(post, user, comments)

@@ -13,7 +13,9 @@
       </div>
 
       <p class="card-text font-size:20px;"><%= post[:message] %></p>
-      <p class="card-text"><%= image_tag(post[:post_image], :class => "image-upload")%></p>
+      <% unless post[:post_image].nil? %>
+        <p class="card-text"><%= image_tag(post[:post_image], :class => "image-upload")%></p>
+      <% end %>
       <p class="card-text">3 Likes</p>
 
       <h6 class="card-subtitle mb-2 ">Comments</h6>
