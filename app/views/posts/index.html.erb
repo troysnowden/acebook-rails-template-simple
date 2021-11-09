@@ -18,25 +18,21 @@
       <h6 class="card-subtitle mb-2 ">Comments</h6>
       <% post[:comments].each do |comment| %>
         <div class="card-comments-container mb-3">
-          <h5 class="card-subtitle">John Smith</h6>
-          <p id="time-posted" class="time-posted"><%= comment[:created_at] %></p>
+          <h5 class="card-subtitle"><%= comment[:author_name]%></h6>
+          <p id="time-posted" class="time-posted"><%= comment[:formatted_time] %></p>
+
           <div class="comment-message-container rounded m-3">
             <p class="user-comment" id="user-comment"> <%= comment[:message] %></p>
           </div>
           <br/>
         </div>
-      <% end %>
+      <% end %> 
       <br/>
 
       <a href="#" class="card-link">Like</a>
 
-      <%# <%= form_with url:"/comments" do |form| %> %>
-        <%# <%= form.hidden_field(:post_id, :value => post[:id]) %> %>
-        <%# <%= form.hidden_field(:comment, :value => "my comment") %> %>
-        <%# <%= form.button  :submit, name: "Comment",value: "Comment"%> %>
-      <%# <% end %> %>
 
-                <h1>
+
             <%= form_for @comment do |form| %>
               <%= form.label :comment %>
               <%= form.text_field :comment %>
@@ -46,7 +42,7 @@
       
               <%= form.submit "Submit" %>
             <% end %>
-          </h1>
+
 
 
     </div>
