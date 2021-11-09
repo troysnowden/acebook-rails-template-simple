@@ -11,6 +11,9 @@ class PostsController < ApplicationController
 
   def index
     @posts_with_username = []
+    @comment = Comment.new
+    @user_id = session[:user_id]
+    p @user_id
     
     Post.all.each do |post| 
       @posts_with_username << {
@@ -27,7 +30,6 @@ class PostsController < ApplicationController
       }
     end
     @posts_with_username = @posts_with_username.reverse()
-    p @posts_with_username
   end
 
   private

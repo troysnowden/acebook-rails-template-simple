@@ -11,12 +11,12 @@ class CommentsController < ApplicationController
   end
 
   def index
-
+    # redirect_to "/comments/new"
   end
 
   private
 
   def comment_params
-    params.require(:comment).permit(:message, :user_id, :post_id)
+    params.require(:comment).permit(:comment, :user_id, :post_id)
   end
 end

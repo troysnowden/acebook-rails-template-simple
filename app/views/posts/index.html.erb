@@ -5,13 +5,16 @@
 <% @posts_with_username.each do |post| %>
   <div class="card" style="width: 25rem;">
     <div class="card-body">
+
       <div class="card-title-container">
         <h5 class="card-title">Post by <%= post[:author_name] %></h5>
         <h6 class="card-subtitle mb-2 text-muted"><%= post[:formatted_time]%></h6>
         <%= image_tag("eggheads/egghead#{Random.rand(3) + 1}.png", :class => "profile-pic")%>
       </div>
+
       <p class="card-text font-size:20px;"><%= post[:message] %></p>
       <p class="card-text">3 Likes</p>
+
       <h6 class="card-subtitle mb-2 ">Comments</h6>
       <% post[:comments].each do |comment| %>
         <div class="card-comments-container mb-3">
@@ -23,9 +26,29 @@
           <br/>
         </div>
       <% end %>
-          <br/>
+      <br/>
+
       <a href="#" class="card-link">Like</a>
-      <a href="#" class="card-link">Comment</a>
+
+      <%# <%= form_with url:"/comments" do |form| %> %>
+        <%# <%= form.hidden_field(:post_id, :value => post[:id]) %> %>
+        <%# <%= form.hidden_field(:comment, :value => "my comment") %> %>
+        <%# <%= form.button  :submit, name: "Comment",value: "Comment"%> %>
+      <%# <% end %> %>
+
+                <h1>
+            <%= form_for @comment do |form| %>
+              <%= form.label :comment %>
+              <%= form.text_field :comment %>
+              <%= form.hidden_field(:user_id, :value => @user_id) %>
+              <%= form.hidden_field(:post_id, :value => post[:id]) %>
+
+      
+              <%= form.submit "Submit" %>
+            <% end %>
+          </h1>
+
+
     </div>
   </div>
 <% end %>
