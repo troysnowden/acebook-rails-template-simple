@@ -10,6 +10,11 @@ class PostsController < ApplicationController
   end
 
   def index
+    if session[:like] != nil
+      session[:like] = session[:like] + 1
+    else
+      session[:like] = 0
+    end
     @posts_with_username = []
     @comment = Comment.new
     @user_id = session[:user_id]
