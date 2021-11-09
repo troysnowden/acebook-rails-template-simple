@@ -1,0 +1,23 @@
+
+<div class="card">
+  <div class="card-header">
+    <h2>
+      Create Comment
+    </h2>
+  </div>
+  <div class="card-body">
+    <p class="card-text">
+          <h1>
+            <%= form_for @comment do |form| %>
+              <%= form.label :comment %>
+              <%= form.text_field :comment %>
+              <%= form.hidden_field(:user_id, :value => @user_id) %>
+              <%= form.hidden_field(:post_id, :value => @post_id) %>
+
+      
+              <%= form.submit "Submit" %>
+            <% end %>
+          </h1>
+    </p>
+  </div>
+</div>
