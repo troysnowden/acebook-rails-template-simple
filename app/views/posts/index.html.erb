@@ -5,15 +5,50 @@
 <% @posts_with_username.each do |post| %>
   <div class="card" style="width: 25rem;">
     <div class="card-body">
+
       <div class="card-title-container">
         <h5 class="card-title">Post by <%= post[:author_name] %></h5>
         <h6 class="card-subtitle mb-2 text-muted"><%= post[:formatted_time]%></h6>
-        <%= image_tag("eggheads/egghead#{Random.rand(3) + 1}.png", :class => "profile-pic")%>
+        <%= image_tag(post[:author_profile_photo], :class => "profile-pic")%>
       </div>
-      <p class="card-text"><%= post[:message] %></p>
+
+      <p class="card-text font-size:20px;"><%= post[:message] %></p>
+      <% unless post[:post_image].nil? %>
+       <%= image_tag(post[:post_image], :class => "post-pic")%>
+      <% end %>
       <p class="card-text">3 Likes</p>
+
+      <h6 class="card-subtitle mb-2 ">Comments</h6>
+      <% post[:comments].each do |comment| %>
+        <div class="card-comments-container mb-3">
+          <h5 class="card-subtitle"><%= comment[:author_name]%></h6>
+          <p id="time-posted" class="time-posted"><%= comment[:formatted_time] %></p>
+          <%= image_tag(comment[:author_profile_photo], :class => "comment-profile-pic")%>
+
+          <div class="comment-message-container rounded m-3">
+            <p class="user-comment" id="user-comment"> <%= comment[:message] %></p>
+          </div>
+          <br/>
+        </div>
+      <% end %> 
+      <br/>
+
       <a href="#" class="card-link">Like</a>
-      <a href="#" class="card-link">Comment</a>
+
+
+
+            <%= form_for @comment do |form| %>
+              <%= form.label :comment %>
+              <%= form.text_field :comment %>
+              <%= form.hidden_field(:user_id, :value => @user_id) %>
+              <%= form.hidden_field(:post_id, :value => post[:id]) %>
+
+      
+              <%= form.submit "Submit" %>
+            <% end %>
+
+
+
     </div>
   </div>
 <% end %>
