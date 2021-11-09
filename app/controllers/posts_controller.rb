@@ -55,13 +55,15 @@ class PostsController < ApplicationController
   end
 
   def comment_hash(comment)
+    comment_user = User.find_by(id: comment.user_id)
     {
       :id => comment.id,
       :message => comment.comment,
       :created_at => comment.created_at,
       :user_id => comment.user_id,
       :post_id => comment.post_id,
-      :author_name => User.find_by(id: comment.user_id).full_name,
+      :author_name => comment_user.full_name,
+      :author_profile_photo => get_author_profile_photo(comment_user),
       :formatted_time => comment.created_at.strftime("on %d/%m/%Y at %k:%M"),
     }
   end

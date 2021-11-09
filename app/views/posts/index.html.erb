@@ -21,6 +21,7 @@
         <div class="card-comments-container mb-3">
           <h5 class="card-subtitle"><%= comment[:author_name]%></h6>
           <p id="time-posted" class="time-posted"><%= comment[:formatted_time] %></p>
+          <%= image_tag(comment[:author_profile_photo], :class => "comment-profile-pic")%>
 
           <div class="comment-message-container rounded m-3">
             <p class="user-comment" id="user-comment"> <%= comment[:message] %></p>
