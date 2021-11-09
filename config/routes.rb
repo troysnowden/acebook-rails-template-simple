@@ -8,8 +8,6 @@ Rails.application.routes.draw do
   resources :comments
   get "/register", to: "users#register"
 
-  post "/comments", to: "comments#index"
-
   get "/login", to: "users#login"
   post "/login", to: "users#authenticate"
   
