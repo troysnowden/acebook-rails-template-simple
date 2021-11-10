@@ -12,14 +12,21 @@ class PostsController < ApplicationController
   def index
     @posts_with_username = []
     @comment = Comment.new
+    @like = Like.new
     @user_id = session[:user_id]
     
     Post.all.each do |post| 
+      post_likes = 0
+      Like.where(post_id: post[:id]).each do |like| 
+        post_likes +=1
+      end 
+
       post_comments = []
       Comment.where(post_id: post[:id]).each do |comment| 
         post_comments << comment_hash(comment)
       end
-      @posts_with_username << post_hash(post, User.find_by(id: post.user_id), post_comments)
+
+      @posts_with_username << post_hash(post, User.find_by(id: post.user_id), post_comments, post_likes)
     end
     @posts_with_username.reverse!
   end
@@ -40,18 +47,20 @@ class PostsController < ApplicationController
       url_for(post.image_upload) : nil
   end
 
-  def post_hash(post, user, comments)
+  def post_hash(post, user, comments,likes)
     {
-      :id => post.id,
-      :message => post.message,
-      :created_at => post.created_at,
-      :user_id => post.user_id,
-      :author_name => user.full_name,
-      :author_profile_photo => get_author_profile_photo(user),
-      :post_image => get_post_image(post),
-      :formatted_time => post.created_at.strftime("on %d/%m/%Y at %k:%M"),
-      :comments => comments
-    }
+        :id => post.id,
+        :message => post.message,
+        :created_at => post.created_at,
+        :user_id => post.user_id,
+        :author_name => User.find_by(id: post.user_id).full_name,
+        :author_profile_photo => get_author_profile_photo(user),
+        :post_image => get_post_image(post),
+        :formatted_time => post.created_at.strftime("on %d/%m/%Y at %k:%M"),
+        :comments => comments,
+        :likes => likes,
+        :current_user_liked => !Like.find_by(post_id: post.id, user_id: session[:user_id]).nil?
+      }
   end
 
   def comment_hash(comment)
