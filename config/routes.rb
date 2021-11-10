@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "/register", to: "users#register"
 
   get "/login", to: "users#login"
-  post "/login", to: "users#authenticate"
+  post "/authenticate", to: "users#authenticate"
   
   get "logout", to: "users#logout"
 end

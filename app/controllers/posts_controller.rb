@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   def new
+    redirect_to "/" unless logged_in?
     @user_id = session[:user_id]
     @post = Post.new
   end
@@ -10,6 +11,7 @@ class PostsController < ApplicationController
   end
 
   def index
+    redirect_to "/" unless logged_in?
     @posts_with_username = []
     @comment = Comment.new
     @user_id = session[:user_id]
