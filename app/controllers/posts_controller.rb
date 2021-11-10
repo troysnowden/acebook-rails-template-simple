@@ -10,11 +10,6 @@ class PostsController < ApplicationController
   end
 
   def index
-    # if session[:like] != nil
-    #   session[:like] = session[:like] + 1
-    # else
-    #   session[:like] = 0
-    # end
     @posts_with_username = []
     @comment = Comment.new
     @like = Like.new
@@ -47,9 +42,11 @@ class PostsController < ApplicationController
         :author_name => User.find_by(id: post.user_id).full_name,
         :formatted_time => post.created_at.strftime("on %d/%m/%Y at %k:%M"),
         :comments => post_comments,
-        :likes => post_likes
+        :likes => post_likes,
+        :current_user_liked => !Like.find_by(post_id: post.id, user_id: session[:user_id]).nil?
       }
     end
+    p @posts_with_username
     @posts_with_username = @posts_with_username.reverse()
   end
 

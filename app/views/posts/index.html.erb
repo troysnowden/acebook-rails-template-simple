@@ -19,8 +19,13 @@
       <%= form.hidden_field(:user_id, :value => @user_id) %>
       <%= form.hidden_field(:post_id, :value => post[:id]) %>
 
-
-      <%= form.submit("like", :class => "mb-3") %>
+      <% if post[:current_user_liked]%>
+        <%= form.submit("liked",:disabled => true, :class => "mb-3") %>
+      <% else %>  
+        <%= form.submit("like", :class => "mb-3") %>
+      <% end %>
+    
+    
       <% end %>
 
       <h6 class="card-subtitle mb-2 ">Comments</h6>
