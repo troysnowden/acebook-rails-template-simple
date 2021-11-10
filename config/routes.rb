@@ -6,10 +6,9 @@ Rails.application.routes.draw do
   resources :posts
   resources :users
   resources :comments
+  resources :likes
   get "/register", to: "users#register"
-
   get "/login", to: "users#login"
   post "/login", to: "users#authenticate"
-  
   get "logout", to: "users#logout"
 end
