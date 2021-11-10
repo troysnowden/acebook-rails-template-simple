@@ -17,6 +17,7 @@ class PostsController < ApplicationController
     # end
     @posts_with_username = []
     @comment = Comment.new
+    @like = Like.new
     @user_id = session[:user_id]
     
     Post.all.each do |post| 

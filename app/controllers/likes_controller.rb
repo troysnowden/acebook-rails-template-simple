@@ -1,19 +1,13 @@
 class LikesController < ApplicationController
 
-    
-
     def create
-        @likes = Like.create(likes_params)
+        @like = Like.create(like_params)
         redirect_to posts_url
       end
-
-    
-    
       private
     
-      def likes_params
-        params.require(:likes.permit(:user_id, :post_id)
+      def like_params
+        params.require(:like).permit(:user_id, :post_id)
       end
 
-    
 end

@@ -29,8 +29,14 @@
       <% end %> 
       <br/>
 
-      <%= button_to "like", root_path, method: :get %>
-      <%= @like %>
+      
+      <%= form_for @like do |form| %>
+      <%= form.hidden_field(:user_id, :value => @user_id) %>
+      <%= form.hidden_field(:post_id, :value => post[:id]) %>
+
+
+      <%= form.submit "like" %>
+    <% end %>
 
 
 
