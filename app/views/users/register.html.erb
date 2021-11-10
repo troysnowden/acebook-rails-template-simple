@@ -1,14 +1,18 @@
-<h1>Sign Up</h1>
+<div class="login-centre">
+<h1>Sign Up</h1><br>
 <%= form_for @user do |f|%>
-  <%= f.label :username%><br>
-  <%= f.text_field :username%><br>
-  <%= f.label :full_name%><br>
-  <%= f.text_field :full_name%><br>
-  <%= f.label :password%><br>
-  <%= f.password_field :password%><br>
-  <%= f.label :profile_photo%><br>
+  <%= f.label :username%>
+  <%= f.text_field :username%><br><br>
+  <%= f.label :full_name%>
+  <%= f.text_field :full_name%><br><br>
+  <%= f.label :password%>
+  <%= f.password_field :password%><br><br>
+  <%= f.label :profile_photo%><br><br>
+  <div class="profile-photo">
   <%= f.file_field :profile_photo%><br>
+  </div>
   <br>
   <%= f.submit %>
   
 <%end%>
+</div>
