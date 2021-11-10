@@ -21,6 +21,11 @@ class PostsController < ApplicationController
     @user_id = session[:user_id]
     
     Post.all.each do |post| 
+      post_likes = 0
+      Like.where(post_id: post[:id]).each do |like| 
+        post_likes +=1
+      end 
+
       post_comments = []
       post_comments_raw = Comment.where(post_id: post[:id]).each do |comment| 
         post_comments << {
@@ -41,7 +46,8 @@ class PostsController < ApplicationController
         :user_id => post.user_id,
         :author_name => User.find_by(id: post.user_id).full_name,
         :formatted_time => post.created_at.strftime("on %d/%m/%Y at %k:%M"),
-        :comments => post_comments
+        :comments => post_comments,
+        :likes => post_likes
       }
     end
     @posts_with_username = @posts_with_username.reverse()
