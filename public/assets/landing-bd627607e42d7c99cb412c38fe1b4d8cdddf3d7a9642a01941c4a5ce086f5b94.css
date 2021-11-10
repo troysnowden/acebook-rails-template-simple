@@ -1,0 +1,7 @@
+/* line 4, app/assets/stylesheets/landing.scss */
+.users {
+  margin: auto;
+  justify-items: center;
+  width: 60%;
+  padding: 10px;
+}
