@@ -1,7 +1,8 @@
-
+<div class="post-center">
 <%= link_to new_post_path do %>
   Enter new post here
 <% end %>
+<br><br>
 <% @posts_with_username.each do |post| %>
   <div class="card" style="width: 25rem;">
     <div class="card-body">
@@ -63,4 +64,5 @@
     </div>
   </div>
 <% end %>
+</div>
 
