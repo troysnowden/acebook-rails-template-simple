@@ -10,6 +10,7 @@ class PostsController < ApplicationController
   end
 
   def index
+    redirect_to "/login" if !logged_in?
     @posts_with_username = []
     @comment = Comment.new
     @like = Like.new
